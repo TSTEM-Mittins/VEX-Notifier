@@ -185,5 +185,3 @@ Overview: This idea is an upgrade to enhance the video processing cabailities by
   ## Conclusion
 
   ---
-
-  Going to ConTinue this Later...
