@@ -16,13 +16,24 @@
 
 ---
 
-## ❓ Problem Statement
-This season Vex V5 High Stakes, PSJA T-STEM Robotics team #3954B, struggled due to lack of research and game insights. Leading in conflicting designs decisions that were incompatiable with the game's contraints, resulting in our robot underforming.
+About Me Profile 
+ - Name: Brandon Zamora
+   ![Alt Text](![image](https://github.com/user-attachments/assets/e7903462-9c80-4a26-a37b-6101f59f5c03))
+ - Clubs/ Organizations:
+   - UIL Science since 6th grade
+   - Band since 6th grade
+   - Robotics Member since 9th grade
+- Awards/ Recognition
+    - Associate's Degree in Science
+    - AP Recognition
+    - Solid Professor certified
+    - Autodesk certified
+
 
 ---
 
-## 🧠 Problem Statement
-To address our team's lack of game knowledge and improve our game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valueable season specific resources. 
+## ❓ Problem Statement
+This season Vex V5 High Stakes, PSJA T-STEM Robotics team #3954B, struggled due to lack of research and game insights. Leading in conflicting designs decisions that were incompatiable with the game's contraints, resulting in our robot underforming. To address our team's lack of game knowledge and improve our early game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valueable season specific resources. 
 
 ---
 
@@ -52,25 +63,15 @@ To ensure a fair and insightful evaluation of the VEX Notifier bot, three distin
 
 ---
 
-## 🧠 Interview 1: Team President - Rogelio
-To address our team's lack of game knowledge and improve our game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valueable season specific resources.
-
-  Q1: How did you approach learning about the game this season?
-
-  Q2: What resources did you find most usefel when researching each game?
-
-  Q3: How did your research influence the way you design your robot?
-
-  Q4: What challenges did you face despite doing the research?
-
- ## Interview 2: Teammate from Team 3954B - Me
+ ## Interview Questions: 
+ 
   Q1: How much research did you do this season?
 
-  Q2: How did lack of research research affected your contributions or design choices?
+  Q2: How did research affected your contributions or design choices?
 
   Q3: Looking back, do you feel more prepared for future seasons?
 
-  Q4: Would a Discord Bot that scouts youtube and summarize YouTube videos have helped you this season?
+  Q4: Do prefer the current state of the group chat with its ability to share and store important information?
 
 ---
 
@@ -121,7 +122,31 @@ Members from our own team and other sudents were asked to interact with the bot 
   ---
 
   ## Results & Observations
+  To evaluate the effectiveness of the VEX Notifier, each participant responeed to four benchmark questions. Responses were group by user's to observe differences across experience levels.
 
+  - ## Control Group - New Member
+      - Observation:
+   
+  - ## User 1 - Team President
+      - Observations:
+    
+  - ## User 3 - Veteran
+      - Observations:
+   
+  ## Result Table
+  
+| Behavior                  |  New Member (J.R) |  Veteran (B.Z) |  President (R.M) |
+
+|---------------------------| ---                | ---            | ---              | 
+
+| Found Relevant Content    | ✅                | ✅            | ✅              |
+
+| Benefited from summaries  | ✅                | ✅            | ✅              |
+
+| Navigated Channels easily | ✅                | ✅            | ✅              |
+
+| Discovered New Resources  | ✅                | ✅            | ✅              |
+  
   ---
   
 ## Limitations
