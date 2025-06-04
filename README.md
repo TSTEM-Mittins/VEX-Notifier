@@ -1,4 +1,164 @@
-# VEX-Notifier
-This is a senior capstone product designed to fetch VEX content from YouTube.
+<h1 align="center">VEX Notifier</h1>
 
-pip install time
+<p align="center">
+  <b>This is a senior capstone project. As the name suggests is a bot coded to resarch YouTube and have ChatGPT Analyze the videos. Ultimately leaving the team with videos the bot scouted, summarized, and recommended for the team to watch.</b><br/>
+  <i>Includes process breakdown, core scripts, and code walkthrough.</i>
+</p>
+
+<p align="center">
+  <a href="https://shields.io">
+    <img src="https://img.shields.io/badge/status-active-brightgreen?style=flat-square">
+  </a>
+  <a href="https://python.org">
+    <img src="https://img.shields.io/badge/python-3.10%2B-blue?style=flat-square">
+  </a>
+</p>
+
+---
+
+## ❓ Problem Statement
+This season Vex V5 High Stakes, PSJA T-STEM Robotics team #3954B, struggled due to lack of research and game insights. Leading in conflicting designs decisions that were incompatiable with the game's contraints, resulting in our robot underforming.
+
+---
+
+## 🧠 Problem Statement
+To address our team's lack of game knowledge and improve our game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valueable season specific resources. 
+
+---
+
+## User Profiles for Bentchmark testing and Interview Questions
+To ensure a fair and insightful evaluation of the VEX Notifier bot, three distinct user profiles were selected. Each user presents a different level of experience and research behavior, helping assess how the tool perforsms and the value it holds accross a diverse audiance
+
+## 🟩 Control Group - New Member
+ - Name: J.R
+ - Role: First year member, Mechanical
+ - Research Style: Rely on guidance from experienced teammates.
+ - Purpose in Test: Baseline for usability. Evaluate the value the bot is worth to someone with no robotics knowledge.
+ - Hypothesis: Might struggle understanding the information presented and would benefit the most from automation and summarized content.
+
+## 🟦 User One - Team President
+ - Name: R.M
+ - Role: Club President, Team Leader, Mechanical, Onshape Expert, 3rd season member
+ - Research Style: Actively seeks out VEX content on YouTube an VEX forms.
+ - Purpose in Test: Give evaluation to the bot's depth and accuracy. Assess whether the summarizations result woud benefit somene who is highly experienced.
+ - Hypothesis: May already know most of the video content but would still benefit being notified for each new VEX video.
+
+## 🟥 User Two - Veteran
+- Name: A.Z
+- Role: Member, Mechanical, 2nd season member
+- Resarch Style: Moderaly watches videos and scouts during the brain storming process.
+- Purpose in Test: Represent the average member research activity. To determine whether the bot providing passive reserch would would help inform membors who do not actively search.
+- Hypothesis: May not actively search for information on their own bu could benefit from summarized content issued in the Discord Server.
+
+---
+
+## 🧠 Interview 1: Team President - Rogelio
+To address our team's lack of game knowledge and improve our game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valueable season specific resources.
+
+  Q1: How did you approach learning about the game this season?
+
+  Q2: What resources did you find most usefel when researching each game?
+
+  Q3: How did your research influence the way you design your robot?
+
+  Q4: What challenges did you face despite doing the research?
+
+ ## Interview 2: Teammate from Team 3954B - Me
+  Q1: How much research did you do this season?
+
+  Q2: How did lack of research research affected your contributions or design choices?
+
+  Q3: Looking back, do you feel more prepared for future seasons?
+
+  Q4: Would a Discord Bot that scouts youtube and summarize YouTube videos have helped you this season?
+
+---
+
+## ⚙️ Core Components
+This bot automated the research process by monitoring and filtering VEX related YouTube content, extracting key insights, and delivering them directly to our Discord server.
+
+## Step by Step Breakdown
+
+## 1. Video Monitoring  - File: `youtube_query.py` - Queries and filters relevant VEX content using YouTube Data API
+  This script uses the **[Official YouTube Data API v3](https://console.cloud.google.com/apis/library/youtube.googleapis.com?authuser=3&inv=1&invt=AbzKkw&project=intrepid-signal-461418-c1)**, Is used to monitor VEX content and filter to ensure only relevant videos get passed.
+  
+- Search Frequency: Every 24 Hours.
+- Max Results: 50 videos/day
+- Keywords: "vex robotics", 'vrc'
+- Video Lenght: Videos after 2 minutes
+- Upload Time: Within the last 14 days
+
+## 2. Transcript Extraction - File: `api_transcription.py`
+   Each video returned is processed using the **[Unofficial YouTube Transcript API by jdepoix](https://github.com/jdepoix/youtube-transcript-api/blob/master/README.md)** to extract video's autogenerated captions.
+   
+  - Video Iding: Each video has a unique id, fetched from the Official YouTube Data API, is sent to the Unofficial YouTube Transcript API to fetch auto generaed captions
+  - Transcript Format: Reurns the transcript in raw JSON format with text, timestamp, and duration.
+
+## 3. AI Processing - Filename: `chatgpt_discord_bot.py`
+   The raw transcriot is sent to **OpenAI's `gpt-4.1-mini` model** using **[OpenAI API](https://openai.com/index/openai-api/)** service to process the videos transcript simulating a scout watching the video to show and tell to the team.
+   
+- Prompt: Summarize and list key details in a concise and easy to understand, and provide time stamps.
+- Tagging: The AI assigns the video to the correct content types(i.e "#mechanical", "#programming", "#electrical")
+- Channel Routing: Based on the tags the AI responds with is routed to it's designated Discord channel
+
+---
+
+## VEX Notifier Benchmark
+To evaluate the real world effectiveness of the bot, this bentchmark is designed to answer the question:
+
+`Does this tool actually improve a robotics team's workflow and knowledge retention?` 
+
+Members from our own team and other sudents were asked to interact with the bot as part of their regular research process. These interview questions were asked with in mind of measuering usability, Utility, and to Assess Impact. By asking these targeted questions, would validate whether this tool can truely replace or supplement manual research. 
+
+  Q1: Were the videoes the bot provided relevant to the current season?
+
+  Q2: Did the AI summaries help video decisions?
+
+  Q3: How easy was it to find what you needed in the Discord channels?
+
+  Q4: Did you find anything new or useful you wouldn't have come accross otherwise?
+
+  ---
+
+  ## Results & Observations
+
+  ---
+  
+## Limitations
+While the VEX Notifier Bot successfully delivering summarized and essential content to the team. There are several contraints and limitation currenty impacting its scalability and reliability:
+
+ - Operating Cost: Each video processed by the bot costs approximately $0.01 to $0.03 using the Open AI API. While this may seem minimal however long term would be cosly and needs a way to be self sustaining to do it's job all throughout peak season. For long term usage would depend on external funding or donations.
+
+ - Server Hosting: The bot currently operates on local hardware consuming system resources. Preferably a cloud based deployment is necessary to ensure 24/7 uptime and redues dependency on personal hardware.
+
+ - Rate Limitations: To avoid triggering YouTube's anti bot system, the bot is rate limited to only process 50 videos daily. Restricting scalability during peak season demand.
+
+ - Transcript dependancy: The bot relies entirely on YouTube's auto generated captions for transcriptions introducing two key risks:
+   - Accuracy: Auto generated captions may contain errors or music leading to innacurate summarias.
+   - Avaibility:  Videos with disabled captions cannot be processed resulting in missed essential content.
+
+  ---
+  
+  ## Future Improvements
+  If provided with more time and resources, I would expand the VEX Notifier Bot to not only process videos but train an AI model to recognize 3D CAD models. The AI model now able to reconize complex VEX Designs will be able to watch videos and gives an even deeper response rather tham relying on captions, also able to understand CAD models posted into onshape.
+
+  Potential Workflow:
+
+## 1. Onshape CAD Model Analyzer
+Overview: This feature would allow the bot to automatically analyze CAD models shared in Onshape using ONshape's API. It would extract the visual data from assemblies and AI to generate design inghts paving a way in automating CAD research and improving video scouting.
+
+ - 1. CAD Link: Monitors Discord server for Onshapes links shared by members
+ - 2: Projection Retrieval: Uses Onshape's API to download isometric and orthograhic projection views of the CAD assemblies.
+ - 3: AI Analysis: The images returned are than send to GPT-4.1 Mini to analyze the model and give summaries of the robot's sub systems.
+ - 4: Dsicord Posts: Automatically post the CAD summary and CAD link to the appropriate Discord channel.
+
+## 2. Smarter Video Processing with RAG
+Overview: This idea is an upgrade to enhance the video processing cabailities by not only process text but also frames within each video. Improving higher accuracy + more detailed summaries.
+
+  ---
+
+  ## Conclusion
+
+  ---
+
+  Going to ConTinue this Later...
