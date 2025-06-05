@@ -33,7 +33,10 @@ About Me Profile
 ---
 
 ## ❓ Problem Statement
-This season Vex V5 High Stakes, PSJA T-STEM Robotics team #3954B, struggled due to lack of research and game insights. Leading in conflicting designs decisions that were incompatiable with the game's contraints, resulting in our robot underforming. To address our team's lack of game knowledge and improve our early game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valueable season specific resources. 
+This season Vex V5 High Stakes, PSJA T-STEM Robotics team #3954B, struggled due to lack of research and game insights. Leading in conflicting designs decisions that were incompatible with the game's constraints, resulting in our robot underforming.
+
+## Statement Of Purpose
+To address our team's lack of game knowledge and improve our early game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valuable season specific resources. 
 
 ---
 
@@ -109,7 +112,7 @@ To evaluate the real world effectiveness of the bot, this bentchmark is designed
 
 `Does this tool actually improve a robotics team's workflow and knowledge retention?` 
 
-Members from our own team and other sudents were asked to interact with the bot as part of their regular research process. These interview questions were asked with in mind of measuering usability, Utility, and to Assess Impact. By asking these targeted questions, would validate whether this tool can truely replace or supplement manual research. 
+Members from our own team and other students were asked to interact with the bot as part of their regular research process. These interview questions were asked with in mind of measuring usability, Utility, and to Assess Impact. By asking these targeted questions, would validate whether this tool can truly replace or supplement manual research. 
 
   Q1: Were the videoes the bot provided relevant to the current season?
 
