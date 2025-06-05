@@ -33,7 +33,7 @@ About Me Profile
 ---
 
 ## ❓ Problem Statement
-This season Vex V5 High Stakes, PSJA T-STEM Robotics team #3954B, struggled due to lack of research and game insights. Leading in conflicting designs decisions that were incompatible with the game's constraints, resulting in our robot underforming.
+This season Vex V5 High Stakes, PSJA T-STEM Robotics team #3954B, struggled due to lack of research and game insights. Leading in conflicting designs decisions that were incompatible with the game's constraints, resulting in our robot under performing.
 
 ## Statement Of Purpose
 To address our team's lack of game knowledge and improve our early game decision making, I developed a Vex Notifier Bot to automatically gather and analyze valuable season specific resources. 
