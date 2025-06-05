@@ -62,7 +62,7 @@ To ensure a fair and insightful evaluation of the VEX Notifier bot, three distin
 - Role: Member, Mechanical, 2nd season member
 - Resarch Style: Moderaly watches videos and scouts during the brain storming process.
 - Purpose in Test: Represent the average member research activity. To determine whether the bot providing passive reserch would would help inform membors who do not actively search.
-- Hypothesis: May not actively search for information on their own bu could benefit from summarized content issued in the Discord Server.
+- Hypothesis: May not actively search for information on their own but could benefit from summarized content issued in the Discord Server.
 
 ---
 
