@@ -18,7 +18,7 @@ processed_id = set()
 class YouTubeSearch:
 
 #   This block loads the requirements into the class.
-    def __init__(self, query="vex robotics", max_results=10, days_back=30):
+    def __init__(self, query="vex robotics", max_results=20, days_back=30):
         load_dotenv()
         self.api_key = os.getenv("YOUTUBE_API_KEY")
         self.youtube = build ('youtube', 'v3', developerKey=self.api_key)
@@ -89,13 +89,13 @@ async def short_videos_task(short_videos):
 
 async def long_videos_task(long_videos):
     for videos in long_videos:
-        # n = len(long_videos)
-        # s = round(random.uniform(1,50), 2)
-        # sleep = (86000 / n) + s
+        n = len(long_videos)
+        s = round(random.uniform(1,50), 2)
+        sleep = (8000 / n) + s
         TranscriptFetcher(video=videos).long_video_processor()
         print(f"\nSuccessfully Proccessed, {videos['title']}")
         
-        await asyncio.sleep(900)
+        await asyncio.sleep(sleep)
 
 async def stream_videos_task(stream_videos):
     for videos in stream_videos:
@@ -117,7 +117,7 @@ async def main():
         stream_videos = [v for v in vid.get('streaming_videos', []) if v['video_id'] not in processed_id]
         if not short_videos and not long_videos and not stream_videos:
             return
-        for v in short_videos and long_videos and stream_videos:
+        for v in short_videos + long_videos + stream_videos:
             processed_id.add(v['video_id'])
         logging.info(f"\n Video List {vid}")
 
@@ -132,7 +132,8 @@ async def main():
 if __name__ == "__main__":
     while True:
         asyncio.run(main())
-        logging.info(f"\nFinishe Executing. Sleeping for 10 minutes.")
+        logging.info(f"\nFinishe Executing. Sleeping for 30 minutes.")
         time.sleep(1800)
+
 
 
