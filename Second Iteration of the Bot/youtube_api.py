@@ -18,7 +18,7 @@ processed_id = set()
 class YouTubeSearch:
 
 #   This block loads the requirements into the class.
-    def __init__(self, query="vex robotics", max_results=1, days_back=30):
+    def __init__(self, query="vex robotics", max_results=10, days_back=30):
         load_dotenv()
         self.api_key = os.getenv("YOUTUBE_API_KEY")
         self.youtube = build ('youtube', 'v3', developerKey=self.api_key)
@@ -134,4 +134,5 @@ if __name__ == "__main__":
         asyncio.run(main())
         logging.info(f"\nFinishe Executing. Sleeping for 10 minutes.")
         time.sleep(1800)
+
 
