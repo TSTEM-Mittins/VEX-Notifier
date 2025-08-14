@@ -1,6 +1,11 @@
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.probability import FreqDist
+import nltk 
+nltk.download('stopwords') 
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
 
 def text_summarizer(text, num_sentences=10):
     # Text into sentences
@@ -38,3 +43,4 @@ def text_summarizer(text, num_sentences=10):
     return summary
 
 #   This is not my script, credit goes to - https://github.com/colombomf/text-summarizer
+
