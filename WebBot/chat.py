@@ -5,7 +5,7 @@ from openai import OpenAI
 from summarizer import text_summarizer
 
 load_dotenv()
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+client = OpenAI(api_key=(os.getenv("OPENAI_API_KEY")))
 
 class ChatGPTMini:
     def __init__(self, transcript):
@@ -55,3 +55,4 @@ class ChatGPTMini:
             
         
         
+
