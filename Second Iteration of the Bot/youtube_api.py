@@ -1,7 +1,7 @@
 from googleapiclient.discovery import build
 from dotenv import load_dotenv
 import os
-from datetime import datetime, timedelta
+import datetime
 from isodate import parse_duration
 import logging
 from message import WebHookMessage
@@ -10,13 +10,15 @@ import random
 from transcript_api import TranscriptFetcher
 import asyncio
 
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-published_after = (datetime.utcnow() - timedelta(days=30)).isoformat("T") + "Z"
+published_after = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=30)).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+processed_id = set()
 #   Handles search and video details
 class YouTubeSearch:
 
 #   This block loads the requirements into the class.
-    def __init__(self, query="vex robotics", max_results=5, days_back=30):
+    def __init__(self, query="vex robotics", max_results=1, days_back=30):
         load_dotenv()
         self.api_key = os.getenv("YOUTUBE_API_KEY")
         self.youtube = build ('youtube', 'v3', developerKey=self.api_key)
@@ -83,36 +85,53 @@ async def short_videos_task(short_videos):
     for videos in short_videos:
         WebHookMessage(videos=videos).short_videos()
         logging.info(f"\nSuccessfully proccessed, {videos['title']}")
-        await asyncio.sleep(60)
+        await asyncio.sleep(600)
 
 async def long_videos_task(long_videos):
     for videos in long_videos:
-        n = len(long_videos)
-        s = round(random.uniform(1,50), 2)
-        sleep = (86000 / n) + s
-        TranscriptFetcher(video_batch=videos).long_video_processor()
+        # n = len(long_videos)
+        # s = round(random.uniform(1,50), 2)
+        # sleep = (86000 / n) + s
+        TranscriptFetcher(video=videos).long_video_processor()
         print(f"\nSuccessfully Proccessed, {videos['title']}")
         
-        await asyncio.sleep(sleep)
+        await asyncio.sleep(900)
 
 async def stream_videos_task(stream_videos):
     for videos in stream_videos:
-        WebHookMessage.stream_videos(videos)
+        WebHookMessage(videos=videos).stream_videos()
         logging.info(f"\nSuccessfully proccessed, {'video_id'}")
-        await asyncio.sleep(60)
+        await asyncio.sleep(700)
+        
 
 async def main():
+        global processed_id
+
         yt = YouTubeSearch()
+        print(published_after)
         vid = yt.search_videos()
+        if not vid:
+            return
+        short_videos = [v for v in vid.get('short_videos', []) if v['video_id'] not in processed_id]
+        long_videos = [v for v in vid.get('long_videos', []) if v['video_id'] not in processed_id]
+        stream_videos = [v for v in vid.get('streaming_videos', []) if v['video_id'] not in processed_id]
+        if not short_videos and not long_videos and not stream_videos:
+            return
+        for v in short_videos and long_videos and stream_videos:
+            processed_id.add(v['video_id'])
+        logging.info(f"\n Video List {vid}")
 
         await asyncio.gather(
-            short_videos_task(vid.get('short_videos', [])),
-            long_videos_task(vid.get('long_videos', [])),
-            stream_videos_task(vid.get('streaming_videos', []))
+            short_videos_task(short_videos=short_videos),
+            long_videos_task(long_videos=long_videos),
+            stream_videos_task(stream_videos=stream_videos)
         )   
+        
+
 
 if __name__ == "__main__":
-       
-    asyncio.run(main())
-    
+    while True:
+        asyncio.run(main())
+        logging.info(f"\nFinishe Executing. Sleeping for 10 minutes.")
+        time.sleep(1800)
 
