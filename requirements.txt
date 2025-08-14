@@ -9,6 +9,5 @@ google-auth==2.28.1                 #   Google Authentication
 
 google-api-python-client==2.149.0     #   Youtube API
 python-dotenv==1.0.1                #   .env files
-
-python==3.11.7                      # Python version 3.11.7
 nltk==3.9.1                                #  Summarizing
+
