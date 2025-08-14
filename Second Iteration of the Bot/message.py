@@ -52,7 +52,7 @@ class WebHookMessage:
             f"Views: {self.videos['view_count']}\n"
             f"@Stream\n" 
         )
-        self.webhook_url = os.getenv("STREAM_VIDEOS")
+        self.webhook_url = os.getenv("WEBHOOK_STREAM")
         response = requests.post(self.webhook_url, json={"content": message})
         response.raise_for_status()
     
