@@ -10,5 +10,6 @@ google-auth==2.28.1                 #   Google Authentication
 google-api-python-client>=2.149.0     #   Youtube API
 python-dotenv==1.0.1                #   .env files
 nltk==3.9.1                                #  Summarizing
-httpx>=0.24.1
+httpx==0.28.1
+
 
