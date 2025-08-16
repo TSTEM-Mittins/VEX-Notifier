@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 import datetime
 from isodate import parse_duration
-import logging
+# import logging
 from message import WebHookMessage
 import time
 import random
@@ -11,7 +11,7 @@ from transcript_api import TranscriptFetcher
 import asyncio
 
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 published_after = (datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=30)).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 processed_id = set()
 #   Handles search and video details
@@ -94,14 +94,14 @@ async def long_videos_task(long_videos):
         # sleep = (86000 / n) + s
         # TranscriptFetcher(video=videos).long_video_processor()
         WebHookMessage(videos=videos).long_videos()
-        print(f"\nSuccessfully Proccessed, {videos['title']}")
+        logging.info(f"\nSuccessfully Proccessed, {videos['title']}")
         
         await asyncio.sleep(sleep)
 
 async def stream_videos_task(stream_videos):
     for videos in stream_videos:
         WebHookMessage(videos=videos).stream_videos()
-        logging.info(f"\nSuccessfully proccessed, {'video_id'}")
+        logging.info(f"\nSuccessfully proccessed, {videos['video_id']}")
         await asyncio.sleep(700)
         
 
@@ -135,5 +135,6 @@ if __name__ == "__main__":
         asyncio.run(main())
         logging.info(f"\nFinishe Executing. Sleeping for 10 minutes.")
         time.sleep(1800)
+
 
 
