@@ -18,11 +18,10 @@ class WebHookMessage:
             f"**Title**: {self.videos['title']}\n"
             f"📺 Watch it here: {self.videos['url']}\n"
             f"📡 from: {self.videos['channelTitle']}\n"
-            f"Video Duration: {self.videos['duration']}\n"
-            f"Views: {self.videos['view_count']}\n"
+            f"⌛ Video Duration: {self.videos['duration']}\n"
+            f"👀 Views: {self.videos['view_count']}\n"
             f"@Shorts\n" 
         )
-        load_dotenv()
         webhook_url = os.getenv("WEBHOOK_SHORTS")
         response = requests.post(webhook_url, json={"content": message})
         response.raise_for_status()
@@ -33,14 +32,20 @@ class WebHookMessage:
             f"**Title**: {self.videos['title']}\n"
             f"📺 Watch it here: {self.videos['url']}\n"
             f"📡 from: {self.videos['channelTitle']}\n"
-            f"Video Duration: {self.videos['duration']}\n"
-            f"Views: {self.videos['view_count']}\n"
-            f"{self.tag}\n" 
-            f"📜 Summary: \n{self.summary}"
+            f"⌛ Video Duration: {self.videos['duration']}\n"
+            f"👀 Views: {self.videos['view_count']}\n"
+            f"@Vex_General\n"
+            # f"{self.tag}\n" 
+            # f"📜 Summary: \n{self.summary}"
         )
-        self.webhook_url = os.getenv(f"WEBHOOK_{self.tag.strip('@').upper()}")
-        response = requests.post(self.webhook_url, json={"content": message})
+        webhook_url = os.getenv("WEBHOOK_GENERAL")
+        response = requests.post(webhook_url, json={"content": message})
         response.raise_for_status()
+  
+      # Going to use this code in a later update.
+        # self.webhook_url = os.getenv(f"WEBHOOK_{self.tag.strip('@').upper()}")
+        # response = requests.post(self.webhook_url, json={"content": message})
+        # response.raise_for_status()
     
     def stream_videos(self):
         message = (
@@ -48,8 +53,8 @@ class WebHookMessage:
             f"**Title**: {self.videos['title']}\n"
             f"📺 Watch it here: {self.videos['url']}\n"
             f"📡 from: {self.videos['channelTitle']}\n"
-            f"Video Duration: {self.videos['duration']}\n"
-            f"Views: {self.videos['view_count']}\n"
+            f"⌛ Video Duration: {self.videos['duration']}\n"
+            f"👀 Views: {self.videos['view_count']}\n"
             f"@Stream\n" 
         )
         self.webhook_url = os.getenv("WEBHOOK_STREAM")
@@ -67,3 +72,4 @@ class WebHookMessage:
         self.webhook_url = os.getenv("STREAM_VIDEOS")
         response = requests.post(self.webhook_url, json={"content": message})
         response.raise_for_status()
+
