@@ -78,13 +78,13 @@ class YouTubeSearch:
 
         
         except Exception as e:
-            logging.error(f"Error fetching videos: {e}")
+            # logging.error(f"Error fetching videos: {e}")
             return []
         
 async def short_videos_task(short_videos):
     for videos in short_videos:
         WebHookMessage(videos=videos).short_videos()
-        logging.info(f"\nSuccessfully proccessed, {videos['title']}")
+        # logging.info(f"\nSuccessfully proccessed, {videos['title']}")
         await asyncio.sleep(500)
 
 async def long_videos_task(long_videos):
@@ -94,14 +94,14 @@ async def long_videos_task(long_videos):
         # sleep = (86000 / n) + s
         # TranscriptFetcher(video=videos).long_video_processor()
         WebHookMessage(videos=videos).long_videos()
-        logging.info(f"\nSuccessfully Proccessed, {videos['title']}")
+        # logging.info(f"\nSuccessfully Proccessed, {videos['title']}")
         
         await asyncio.sleep(600)
 
 async def stream_videos_task(stream_videos):
     for videos in stream_videos:
         WebHookMessage(videos=videos).stream_videos()
-        logging.info(f"\nSuccessfully proccessed, {videos['video_id']}")
+        # logging.info(f"\nSuccessfully proccessed, {videos['video_id']}")
         await asyncio.sleep(700)
         
 
@@ -120,7 +120,7 @@ async def main():
             return
         for v in short_videos + long_videos + stream_videos:
             processed_id.add(v['video_id'])
-        logging.info(f"\n Video List {vid}")
+        # logging.info(f"\n Video List {vid}")
 
         await asyncio.gather(
             short_videos_task(short_videos=short_videos),
@@ -133,8 +133,9 @@ async def main():
 if __name__ == "__main__":
     while True:
         asyncio.run(main())
-        logging.info(f"\nFinishe Executing. Sleeping for 30 minutes.")
+        # logging.info(f"\nFinishe Executing. Sleeping for 30 minutes.")
         time.sleep(1800)
+
 
 
 
