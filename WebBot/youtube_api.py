@@ -89,10 +89,11 @@ async def short_videos_task(short_videos):
 
 async def long_videos_task(long_videos):
     for videos in long_videos:
-        n = len(long_videos)
-        s = round(random.uniform(1,50), 2)
-        sleep = (86000 / n) + s
-        TranscriptFetcher(video=videos).long_video_processor()
+        # n = len(long_videos)
+        # s = round(random.uniform(1,50), 2)
+        # sleep = (86000 / n) + s
+        # TranscriptFetcher(video=videos).long_video_processor()
+        WebHookMessage(videos=videos).long_videos()
         print(f"\nSuccessfully Proccessed, {videos['title']}")
         
         await asyncio.sleep(sleep)
@@ -134,4 +135,5 @@ if __name__ == "__main__":
         asyncio.run(main())
         logging.info(f"\nFinishe Executing. Sleeping for 10 minutes.")
         time.sleep(1800)
+
 
